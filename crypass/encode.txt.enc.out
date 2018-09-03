@@ -1,0 +1,318 @@
+The PyCrypto module seems to provide all one needs for employing strong cryptography in a program. It wraps a highly optimized C implementation of many popular encryption algorithms with a Python interface. PyCrypto can be built from source on Linux, and Windows binaries for various versions of Python 2.x were kindly made available by Michael Foord on this page.
+
+My only gripe with PyCrypto is its documentation. The auto-generated API doc is next to useless, and this overview is somewhat dated and didn't address the questions I had about the module. It isn't surprising that a few modules were created just to provide simpler and better documented wrappers around PyCrypto.
+
+In this article I want to present how to use PyCrypto for simple symmetric encryption and decryption of files using the AES algorithm.
+
+Since the PyCrypto block-level encryption API is very low-level, it expects your key to be either 16, 24 or 32 bytes long (for AES-128, AES-196 and AES-256, respectively). The longer the key, the stronger the encryption.
+
+Having keys of exact length isn't very convenient, as you sometimes want to use some mnemonic password for the key. In this case I recommend picking a password and then using the SHA-256 digest algorithm from hashlib to generate a 32-byte key from it. Just replace the assignment to key in the code above with:
+
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
+Keep in mind that this 32-byte key only has as much entropy as your original password. So be wary of brute-force password guessing, and pick a relatively strong password (kitty probably won't do). What's useful about this technique is that you don't have to worry about manually padding your password - SHA-256 will scramble a 32-byte block out of any password for you.
+
+The next thing the code does is set the block mode of AES. I won't get into all the details, but unless you have some special requirements, CBC should be good enough for you.
+
+We create a new AES encryptor object with Crypto.Cipher.AES.new, and give it the encryption key and the mode. Next comes the encryption itself. Again, since the API is low-level, the encrypt method expects your input to consist of an integral number of 16-byte blocks (16 is the size of the basic AES block).
+
+The encryptor object has an internal state when used in the CBC mode, so if you try to encrypt the same text with the same encryptor once again - you will get different results. So be careful to create a fresh AES encryptor object for any encryption/decryption job.
