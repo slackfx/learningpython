@@ -31,7 +31,7 @@ def encrypt_file(key, in_filename, out_filename=None, chunksize=64*1024):
 
                 outfile.write(encryptor.encrypt(chunk))
 
-def decrypt_file(key, in_filename, out_filename=None, chunksize=24*1024):
+def decrypt_file(key, in_filename, out_filename=None, chunksize=64*1024):
     if not out_filename:
         out_filename = in_filename + '.out'
     
