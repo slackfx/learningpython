@@ -12,3 +12,8 @@ poisson.cdf(3, 2)
 # e mais de 3 acidentes ?
 
 poisson.sf(3, 2)
+
+# Em média ocorrem 10 mortes por mês em um hospital.
+
+# Qual a probabilidade de, em um determinado mês, ocorrerem 12 mortes?
+poisson.pmf(12, 10)
